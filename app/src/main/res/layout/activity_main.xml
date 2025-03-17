@@ -1,121 +1,121 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".MainActivity"
     android:gravity="center_horizontal"
-    >
+    android:orientation="vertical"
+    tools:context=".MainActivity">
 
 
-        <TextView
-            android:id="@+id/status"
+    <TextView
+        android:id="@+id/status"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="Status zamówienia: W trakcie"
+        android:textSize="23sp" />
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="10dp"
+        app:cardBackgroundColor="@color/black"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="4dp">
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:text="Status zamówienia: W trakcie"
-            android:textSize="23sp" />
+            android:background="#f5fadc"
+            android:orientation="vertical">
 
-        <androidx.cardview.widget.CardView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:paddingStart="16dp"
-            android:paddingEnd="10dp"
-            app:cardBackgroundColor="@color/black"
-            app:cardCornerRadius="8dp"
-            app:cardElevation="4dp">
 
-            <LinearLayout
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:background="#f5fadc"
-                android:orientation="vertical">
+                android:text="Wybierz kawę:" />
 
+            <RadioGroup
+                android:id="@+id/kawa_Radio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp">
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:text="Wybierz kawę:" />
-
-                <RadioGroup
-                    android:id="@+id/kawa_Radio"
+                <RadioButton
+                    android:id="@+id/es"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="10dp">
+                    android:text="Espresso" />
 
-                    <RadioButton
-                        android:id="@+id/es"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Espresso" />
-
-                    <RadioButton
-                        android:id="@+id/ca"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Capuccino" />
-
-                    <RadioButton
-                        android:id="@+id/la"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Latte" />
-                </RadioGroup>
-
-                <TextView
+                <RadioButton
+                    android:id="@+id/ca"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:text="Wybierz dodatki (opcjonalne):" />
+                    android:text="Capuccino" />
 
-                <CheckBox
-                    android:id="@+id/cu"
+                <RadioButton
+                    android:id="@+id/la"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Cukier" />
+                    android:text="Latte" />
+            </RadioGroup>
 
-                <CheckBox
-                    android:id="@+id/ml"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Mleko" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="Wybierz dodatki (opcjonalne):" />
 
-                <TextView
-                    android:id="@+id/ile_kubkow"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Wybierz ile kubeczków kawy chcesz:" />
+            <CheckBox
+                android:id="@+id/cu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cukier" />
 
-                <SeekBar
-                    android:id="@+id/sb"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:max="10"
-                    android:progress="5"
-                    android:progressBackgroundTint="#8a7b0e"
-                    android:progressTint="#ab9807"
-                    android:thumbTint="#d6c333" />
+            <CheckBox
+                android:id="@+id/ml"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Mleko" />
 
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Zamów"
-                    android:backgroundTint="#f5ef7f"
-                    android:textColor="@color/black"
-                    android:layout_gravity="center_horizontal"
-                    />
+            <TextView
+                android:id="@+id/ile_kubkow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Wybierz ile kubeczków kawy chcesz:" />
 
-            </LinearLayout>
+            <SeekBar
+                android:id="@+id/sb"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:max="10"
+                android:progress="5"
+                android:progressBackgroundTint="#8a7b0e"
+                android:progressTint="#ab9807"
+                android:thumbTint="#d6c333" />
+
+            <Button
+                android:id="@+id/submit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:backgroundTint="#f5ef7f"
+                android:text="Zamów"
+                android:textColor="@color/black"
+
+                />
+
+        </LinearLayout>
 
 
-        </androidx.cardview.widget.CardView>
+    </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
         android:layout_width="wrap_content"
@@ -127,15 +127,17 @@
         app:cardCornerRadius="4dp"
         app:elevation="8dp">
 
-    <ImageView
-        android:layout_width="200dp"
-        android:layout_height="150dp"
-        android:layout_margin="10dp"
-        android:contentDescription="Tu powinna być kawa"
-        android:scaleType="fitCenter"
-        android:src="@drawable/tu_bedzie_kawa"/>
+        <ImageView
+            android:id="@+id/fotka"
+            android:layout_width="200dp"
+            android:layout_height="150dp"
+            android:layout_margin="10dp"
+            android:contentDescription="Tu powinna być kawa"
+            android:scaleType="fitCenter"
+            android:src="@drawable/tu_bedzie_kawa" />
 
     </androidx.cardview.widget.CardView>
+
 
 
 </LinearLayout>
