@@ -1,6 +1,7 @@
 package com.example.kawa
 
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.CheckBox
 import android.widget.ImageView
@@ -12,8 +13,12 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import kotlin.reflect.typeOf
 
 class MainActivity : AppCompatActivity() {
+
+    private var selectedCoffee: String = "Espresso"
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,54 +30,50 @@ class MainActivity : AppCompatActivity() {
             insets
         }
         var fota = findViewById<ImageView>(R.id.fotka)
-        var isEspresso = findViewById<RadioButton>(R.id.es).isChecked
-        var capuccino = findViewById<RadioButton>(R.id.ca).isChecked
-        var latte = findViewById<RadioButton>(R.id.la).isChecked
 
         val buttonSubmit: Button = findViewById(R.id.submit)
-
-        var cuk = findViewById<CheckBox>(R.id.cu).isChecked
-        var mle = findViewById<CheckBox>(R.id.ml).isChecked
 
         var grupa = findViewById<RadioGroup>(R.id.kawa_Radio)
         grupa.setOnCheckedChangeListener { _, checkedId ->
 
-
-
-
-            when{
-                isEspresso -> fota.setImageResource(R.drawable.espresso)
-                capuccino -> fota.setImageResource(R.drawable.capuccino)
-                latte -> fota.setImageResource(R.drawable.latte)
+            selectedCoffee = findViewById<RadioButton>(checkedId).text.toString()
+            when(selectedCoffee){
+               "Espresso" -> fota.setImageResource(R.drawable.espresso)
+               "Capuccino"-> fota.setImageResource(R.drawable.capuccino)
+               "Latte"-> fota.setImageResource(R.drawable.latte)
+            }
+        }
+        val ileSeekBar = findViewById<SeekBar>(R.id.sb)
+        var ile = 0
+        ileSeekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+            override fun onProgressChanged(p0: SeekBar?, progress: Int, p2: Boolean) {
+                ile = progress
             }
 
+            override fun onStartTrackingTouch(p0: SeekBar?) {
 
-        }
+            }
+            override fun onStopTrackingTouch(p0: SeekBar?) {
+
+            }
+        })
+
         buttonSubmit.setOnClickListener {
             var opcja = ""
-
-            if (cuk == true && mle == true){
-                opcja = "z cukrem i mlekiem."
-            }
-            else if (cuk == true && mle == false){
-                opcja = "z cukrem bez mleka."
-            }
-            else if (cuk == false && mle == true){
-                opcja = "z mlekiem bez cukru."
-            }
-            else{
-                opcja = "bez cukru i mleka."
-            }
-
-            var ile = findViewById<SeekBar>(R.id.sb)
-
-
+            var cuk = findViewById<CheckBox>(R.id.cu).isChecked
+            var mle = findViewById<CheckBox>(R.id.ml).isChecked
             when{
-                isEspresso -> Toast.makeText(this, "Wybrana kawa to Espresso ${opcja} w ilości ${ile}", Toast.LENGTH_SHORT).show()
-                capuccino -> Toast.makeText(this, "Wybrana kawa to Capuccino ${opcja} w ilości ${ile}", Toast.LENGTH_SHORT).show()
-                latte -> Toast.makeText(this, "Wybrana kawa to Latte ${opcja} w ilości ${ile}", Toast.LENGTH_SHORT).show()
+                (cuk == true && mle == true) ->   opcja = "z cukrem i mlekiem."
+                (cuk == true && mle == false) -> opcja = "z cukrem bez mleka."
+                (cuk == false && mle == true) -> opcja = "z mlekiem bez cukru."
+                else -> opcja = "bez cukru i mleka."
             }
-
+                when (selectedCoffee) {
+                    "Espresso" -> Toast.makeText(this, "Wybrana kawa to Espresso ${opcja} w ilości ${ile}", Toast.LENGTH_SHORT).show()
+                    "Capuccino" -> Toast.makeText(this, "Wybrana kawa to Capuccino ${opcja} w ilości ${ile}", Toast.LENGTH_SHORT).show()
+                    "Latte" -> Toast.makeText(this, "Wybrana kawa to Latte ${opcja} w ilości ${ile}", Toast.LENGTH_SHORT).show()
+                }
+            }
 
 
         }
@@ -80,4 +81,3 @@ class MainActivity : AppCompatActivity() {
 
 
     }
-}
